@@ -1,0 +1,8 @@
+social:
+  - title: Github
+    url: https://github.com/envygeeks
+    identifier: github
+main:
+  title: Hello
+  url: "/hello.html"
+  identifier: hello

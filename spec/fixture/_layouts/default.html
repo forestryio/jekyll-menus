@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <header>
+      <nav>
+        {% assign menu = site.menus.main %}
+        {% include
+          _menus.html
+        %}
+      </nav>
+    </header>
+
+    {{ content }}
+  </body>
+</html>
