@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.homepage = "http://github.com/forestryio/jekyll-menus/"
   spec.description = "Menus (site navigation) for your Jekyll website"
   spec.summary = "Menus (navigation) for your very own Jekyll website."
-  spec.files = %W(Rakefile Gemfile) + Dir["lib/**/*"]
+  spec.files = %W(Gemfile) + Dir["lib/**/*"]
   spec.required_ruby_version = ">= 2.1.0"
   spec.email = ["jordon@envygeeks.io"]
   spec.require_paths = ["lib"]
