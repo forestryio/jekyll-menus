@@ -2,7 +2,7 @@ social:
   - title: Github
     url: https://github.com/envygeeks
     identifier: github
-main:
-  title: Hello
-  url: "/hello.html"
+header:
+  title: Github
+  url: https://github.com
   identifier: hello
