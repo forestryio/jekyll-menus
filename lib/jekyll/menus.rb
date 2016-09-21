@@ -167,10 +167,12 @@ module Jekyll
 
     private
     def _validate_config_menu_item(item)
-      unless item.is_a?(Hash) && item.values_at("url", "title", "identifier").compact.size == 3
+      if !item.is_a?(Hash) || !item.values_at("url", "title", "identifier").compact.size == 3
         _throw_invalid_menu_entry(
           item
         )
+      else
+        item["weight"] ||= -1
       end
     end
 
