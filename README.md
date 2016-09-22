@@ -96,3 +96,75 @@ menu:
     weight: 4
     customData: value
 ```
+
+## Outputting the menu's
+### A basic menu
+
+Given you have several pages with the following:
+
+```yaml
+menu: header
+```
+
+You can output those with the following:
+
+```html
+<header>
+  <nav>
+    <ul>
+      {% for item in site.menus.header %}
+        <li><a href="{{ item.url }}">
+          {{ item.title }}
+        </a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+```
+
+### Recursive Menu output
+
+If you want to output recursive menus efficiently you should start working with an include, so you can recurse on that include and have infinite menus if you ***really*** want.
+
+#### Example
+
+`_includes/menus.html`
+
+```html
+<ul>
+  {% for item in menu %}
+    <li>
+      <span>
+        <a href="{{ item.url }}">
+          {{ item.title }}
+        </a>
+      </span>
+
+      {% if item.children %}
+        {% assign menu = item.children %}
+        {% include
+          _menus.html
+        %}
+      {% endif %}
+  {% endfor %}
+</ul>
+```
+
+`_layouts/default.html`
+
+```html
+<html>
+  <body>
+    <header>
+      <nav>
+        {% assign menu = site.menus.main %}
+        {% include
+          _menus.html
+        %}
+      </nav>
+    </header>
+
+    {{ content }}
+  </body>
+</html>
+```
