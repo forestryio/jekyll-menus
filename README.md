@@ -1,16 +1,17 @@
 # Jekyll Menus
 
-Complex menus for Jekyll.
+Complex, and infinite Hugo-like menus for Jekyll.
 
 ## Usage
 
-You can create `_data/menu.yml`, `_data/menus.yml`, or both, or add menu items
-via your front-matter. Both are merged into the same menus so you can even
-split off menus between the two, so that you can have menus that have
-internal and external links! Just make sure the identifiers match.
+In Jekyll Menus you can create `_data/menu.yml`, `_data/menus.yml`, or both, or add menu items via your front-matter in pages as well! Both are merged into the same menus if the identifiers match so you can even split off menus between the two, and so that you can have menus that have internal and external links.
 
 ### Front-Matter Examples
-#### String Key Menu Item
+#### Using a String key to add an item to the menu
+
+You can add an item to any menu by simply doing `menus: identifier` inside of your front-matter. If you do it this way, the string is the identifier (the menu you wish to place the item on) and all the other data is inferred from Jekyll, such as the items own identifier (take from the files slug,) title, and it defaults the weight to `-1` for you, making it so that your menu item is pretty much automatic aside from needing to add itself.
+
+##### Example
 
 ```yml
 ---
@@ -18,12 +19,11 @@ menus: main
 ---
 ```
 
-The above configuration will infer all data (url, title, identifier, weight)
-from your page data, the default weight is "-1" and the identifier is made from
-the pages slug, which Jekyll itself generates.  It will also place the page
-on the "main" menu on your behalf after inferring said data.
+#### Using an array to add an item to multiple menus
 
-#### Array of String Key Menu Items
+Like string keys, you can create an array of string keys, that allows you place an item on multiple identifiers at once, and like the string version, it will infer the data from Jekyll.
+
+##### Example
 
 ```yml
 ---
@@ -33,12 +33,11 @@ menus:
 ---
 ```
 
-The above configuration will infer all data (url, title, identifier, weight)
-from your page data, the default weight is "-1" and the identifier is made from
-the pages slug, which Jekyll itself generates.  It will also place the page
-on the "header", and "footer" menus after inferring said data.
+#### Adding a menu item with data
 
-#### Hash with Key as Identifier
+Jekyll Menus uses the keys, `title`, `weight`, `identifier` (slug), and `url`, you can customize said data and even add your own data, to do that you make the menu item hash with the data and any data you do not override is inferred like the other ways to add menu items.  And like adding it to multiple identifiers with an array, you can do the same here by turning menus into an array and adding multiple hashes.
+
+##### Examples
 
 ```yml
 ---
@@ -48,23 +47,21 @@ menus:
 ---
 ```
 
-The above will place a menu on "main" and override the URL for you inferring
-the rest of the data on your behalf.  You can add multiple keys with hashes
-if you wish to place the item on multiple menus, and you can override as much
-as you wish at that time.  ***Data is not inferred between items, so if you
-override in one you must override in all, or the default values will be
-used.***
+```yaml
+menus:
+  - header
+  - main:
+      url: "/custom-url"
+```
 
-### `_data/menu.yml`, `_data/menus.yml`
+### Using `_data/menu.yml`, `_data/menus.yml`
 
-***All data within menu(s).yml must provide url, title, identifier, and
-weight (actually weight is optional)***
+***All data within menu(s).yml must provide `url`, `title`, `identifier`, with `weight` being optional.***
 
 Menu items within data files must follow a key array format, or a key hash
-format, we do not accept string formats because we do not infer data, it's
-impossible to infer such data efficiently and the data files are mostly built
-for you to add external links or links to other parts of your site that are
-considered sub-domains.  Examples:
+format, we do not accept string formats because we cannot infer data and to do so would be pretty expensive.
+
+#### Examples
 
 ```yml
 main:
@@ -90,3 +87,12 @@ You can add any amount of custom data you wish to an item, we do not remove
 data, and we do not block it, we will pass any data you wish to put into the
 into the menu item.  It is up to you what data you put there, we only check
 that our own keys exist, and if they don't then we fail in certain scenarios.
+
+#### Example
+
+```
+menu:
+  main:
+    weight: 4
+    customData: value
+```
