@@ -15,33 +15,34 @@ module Jekyll
 
     def to_liquid_drop
       Drops::All.new(Utils.deep_merge(
-        _config_menus, _page_menus
+        _data_menus, _page_menus
       ))
     end
 
     #
 
-    def _config_menus
-      mns = [@site.data["menu"], @site.data["menus"]]
-      out = {}; mns.compact.each do |menus|
-        menus.each do |key, menu|
-          if menu.is_a?(Hash) || menu.is_a?(Array)
-            (menu = [menu].flatten).each do |item|
-              _validate_config_menu_item(
-                item
-              )
-            end
+    def _data_menus
+      out = {}
 
-          else
-            _throw_invalid_menu_entry(
-              menu
+      @site.data["menus"].each do |key, menu|
+        if menu.is_a?(Hash) || menu.is_a?(Array)
+          (menu = [menu].flatten).each do |item|
+            _validate_config_menu_item(
+              item
             )
           end
 
-          out = Utils.deep_merge(out, {
-            key => menu
-          })
+        else
+          _throw_invalid_menu_entry(
+            menu
+          )
         end
+
+        merge = { key => menu }
+        merge["_fronmatter"] = false
+        out = Utils.deep_merge(
+          out, merge
+        )
       end
 
       out
@@ -157,8 +158,9 @@ module Jekyll
       val ||= {}
 
       val["url"] ||= page.url
-      val["title"] ||= page.data["title"]
       val["identifier"] ||= File.basename(page.name, page.ext)
+      val["title"] ||= page.data["title"]
+      val["_frontmatter"] = true
       val["weight"] ||= -1
       val
     end
