@@ -4,7 +4,7 @@ Complex, and infinite Hugo-like menus for Jekyll.
 
 ## Usage
 
-In Jekyll Menus you can create `_data/menu.yml`, `_data/menus.yml`, or both, or add menu items via your front-matter in pages as well! Both are merged into the same menus if the identifiers match so you can even split off menus between the two, and so that you can have menus that have internal and external links.
+In Jekyll Menus you can create `_data/menus.yml`, or add menu items via your front-matter in pages as well! Both are merged into the same menus if the identifiers match so you can even split off menus between the two, and so that you can have menus that have internal and external links.
 
 ### Front-Matter Examples
 #### Using a String key to add an item to the menu
@@ -56,10 +56,9 @@ menus:
 
 ### Using `_data/menu.yml`, `_data/menus.yml`
 
-***All data within menu(s).yml must provide `url`, `title`, `identifier`, with `weight` being optional.***
+***All data within _menus.yml must provide `url`, `title`, `identifier`, with `weight` being optional.***
 
-Menu items within data files must follow a key array format, or a key hash
-format, we do not accept string formats because we cannot infer data and to do so would be pretty expensive.
+Menu items within data files must follow a key array format, or a key hash format, we do not accept string formats because we cannot infer data and to do so would be pretty expensive.
 
 #### Examples
 
@@ -77,9 +76,7 @@ main:
   url: url
 ```
 
-***It should be noted that _data/menu.yml and _data/menus.yml are both read
-and merged, so you can have one, or both... we won't judge you if you happen
-to use both of these files at once, it's your choice!***
+***It should be noted that _data/menus.yml are both read and merged, so you can have one, or both... we won't judge you if you happen to use both of these files at once, it's your choice!***
 
 ### Adding menu items to menu items
 
