@@ -54,7 +54,7 @@ menus:
       url: "/custom-url"
 ```
 
-### Using `_data/menu.yml`, `_data/menus.yml`
+### Using `_data/menus.yml`
 
 ***All data within _menus.yml must provide `url`, `title`, `identifier`, with `weight` being optional.***
 
