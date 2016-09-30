@@ -13,10 +13,18 @@ module Jekyll
 
     #
 
-    def to_liquid_drop
-      Drops::All.new(Utils.deep_merge(
+    def menus
+      Util.deep_merge(
         _data_menus, _page_menus
-      ))
+      )
+    end
+
+    #
+
+    def to_liquid_drop
+      Drops::All.new(
+        menus
+      )
     end
 
     #
