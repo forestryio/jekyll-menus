@@ -14,7 +14,7 @@ module Jekyll
     #
 
     def menus
-      Util.deep_merge(
+      Utils.deep_merge(
         _data_menus, _page_menus
       )
     end
