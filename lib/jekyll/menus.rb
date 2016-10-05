@@ -47,7 +47,7 @@ module Jekyll
         end
 
         merge = { key => menu }
-        merge["_fronmatter"] = false
+        merge["_frontmatter"] = false
         out = Utils.deep_merge(
           out, merge
         )
@@ -168,7 +168,7 @@ module Jekyll
       val["url"] ||= page.url
       val["identifier"] ||= File.basename(page.name, page.ext)
       val["title"] ||= page.data["title"]
-      val["_frontmatter"] = true
+      val["_frontmatter"] = page.relative_path # page.url can be changed with permalink frontmatter
       val["weight"] ||= -1
       val
     end
