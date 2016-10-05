@@ -166,11 +166,25 @@ module Jekyll
       val ||= {}
 
       val["url"] ||= page.url
-      val["identifier"] ||= File.basename(page.name, page.ext)
+      val["identifier"] ||= slug(page)
+      val["_frontmatter"] = page.relative_path # `page.url` can be changed with permalink frontmatter
       val["title"] ||= page.data["title"]
-      val["_frontmatter"] = page.relative_path # page.url can be changed with permalink frontmatter
       val["weight"] ||= -1
+
+      require "pry"
+      Pry.output = STDOUT
+      binding.pry
       val
+    end
+
+    #
+
+    private
+    def slug(page)
+      out = File.join(File.dirname(page.path), File.basename(page.path, page.ext))
+      out.tr("^a-z0-9-_\\/", "").gsub(
+        /\/|\-+/, "_"
+      )
     end
 
     #
