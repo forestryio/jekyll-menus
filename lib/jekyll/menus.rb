@@ -14,9 +14,7 @@ module Jekyll
     #
 
     def menus
-      Utils.deep_merge(
-        _data_menus, _page_menus
-      )
+      Utils.deep_merge(_data_menus, Utils.deep_merge(_page_menus, _collection_menus))
     end
 
     #
@@ -38,6 +36,8 @@ module Jekyll
             _validate_config_menu_item(
               item
             )
+
+            item["_frontmatter"] = false
           end
 
         else
@@ -47,7 +47,6 @@ module Jekyll
         end
 
         merge = { key => menu }
-        merge["_frontmatter"] = false
         out = Utils.deep_merge(
           out, merge
         )
@@ -63,70 +62,93 @@ module Jekyll
 
       @site.pages.select { |p| p.data.keys.grep(/menus?/).size > 0 }.each_with_object({}) do |page|
         [page.data["menus"], page.data["menu"]].flatten.compact.map do |menu|
+          out = _front_matter_menu(menu, page, out)
+        end
+      end
+
+      out
+    end
+
+    #
+
+    def _collection_menus
+      out = {}
+
+      @site.collections.each do |collection, pages|
+        pages.select { |p| p.data.keys.grep(/menus?/).size > 0 }.each_with_object({}) do |page|
+          [page.data["menus"], page.data["menu"]].flatten.compact.map do |menu|
+            out = _front_matter_menu(menu, page, out)
+          end
+        end
+      end
+
+      out
+    end
+
+    #
+
+    def _front_matter_menu(menu, page, out={})
+      # --
+      # menu: key
+      # menu:
+      #   - key1
+      #   - key2
+      # --
+
+      if menu.is_a?(Array) || menu.is_a?(String)
+        _simple_front_matter_menu(menu, {
+          :mergeable => out, :page => page
+        })
+
+      #
+
+      elsif menu.is_a?(Hash)
+        menu.each do |key, item|
+          out[key] ||= []
 
           # --
-          # menu: key
           # menu:
-          #   - key1
-          #   - key2
+          #   key: identifier
           # --
 
-          if menu.is_a?(Array) || menu.is_a?(String)
-            _simple_front_matter_menu(menu, {
-              :mergeable => out, :page => page
+          if item.is_a?(String)
+            out[key] << _fill_front_matter_menu({ "identifier" => item }, {
+              :page => page
             })
 
-          #
+          # --
+          # menu:
+          #   key:
+          #     url: /url
+          # --
 
-          elsif menu.is_a?(Hash)
-            menu.each do |key, item|
-              out[key] ||= []
-
-              # --
-              # menu:
-              #   key: identifier
-              # --
-
-              if item.is_a?(String)
-                out[key] << _fill_front_matter_menu({ "identifier" => item }, {
-                  :page => page
-                })
-
-              # --
-              # menu:
-              #   key:
-              #     url: /url
-              # --
-
-              elsif item.is_a?(Hash)
-                out[key] << _fill_front_matter_menu(item, {
-                  :page => page
-                })
-
-              # --
-              # menu:
-              #   key:
-              #     - url: /url
-              # --
-
-              else
-                _throw_invalid_menu_entry(
-                  item
-                )
-              end
-            end
+          elsif item.is_a?(Hash)
+            out[key] << _fill_front_matter_menu(item, {
+              :page => page
+            })
 
           # --
           # menu:
-          #   key: 3
+          #   key:
+          #     - url: /url
           # --
 
           else
             _throw_invalid_menu_entry(
-              menu
+              item
             )
           end
         end
+
+      # --
+      # menu:
+      #   key: 3
+      # --
+
+      else
+        _throw_invalid_menu_entry(
+          menu
+        )
       end
 
       out
