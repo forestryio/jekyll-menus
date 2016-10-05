@@ -170,10 +170,6 @@ module Jekyll
       val["_frontmatter"] = page.relative_path # `page.url` can be changed with permalink frontmatter
       val["title"] ||= page.data["title"]
       val["weight"] ||= -1
-
-      require "pry"
-      Pry.output = STDOUT
-      binding.pry
       val
     end
 
