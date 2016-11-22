@@ -14,7 +14,9 @@ module Jekyll
     #
 
     def menus
-      Utils.deep_merge(_data_menus, Utils.deep_merge(_page_menus, _collection_menus))
+      Utils.deep_merge(_data_menus, Utils.deep_merge(
+        _page_menus, _collection_menus
+      ))
     end
 
     #
@@ -30,26 +32,28 @@ module Jekyll
     def _data_menus
       out = {}
 
-      @site.data["menus"].each do |key, menu|
-        if menu.is_a?(Hash) || menu.is_a?(Array)
-          (menu = [menu].flatten).each do |item|
-            _validate_config_menu_item(
-              item
-            )
+      if @site.data["menus"] && @site.data.menus.is_a?(Hash)
+        then @site.data["menus"].each do |key, menu|
+          if menu.is_a?(Hash) || menu.is_a?(Array)
+            (menu = [menu].flatten).each do |item|
+              _validate_config_menu_item(
+                item
+              )
 
-            item["_frontmatter"] = false
+              item["_frontmatter"] = false
+            end
+
+          else
+            _throw_invalid_menu_entry(
+              menu
+            )
           end
 
-        else
-          _throw_invalid_menu_entry(
-            menu
+          merge = { key => menu }
+          out = Utils.deep_merge(
+            out, merge
           )
         end
-
-        merge = { key => menu }
-        out = Utils.deep_merge(
-          out, merge
-        )
       end
 
       out
