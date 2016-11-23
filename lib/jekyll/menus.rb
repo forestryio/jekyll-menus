@@ -32,7 +32,7 @@ module Jekyll
     def _data_menus
       out = {}
 
-      if @site.data["menus"] && @site.data.menus.is_a?(Hash)
+      if @site.data["menus"] && @site.data["menus"].is_a?(Hash)
         then @site.data["menus"].each do |key, menu|
           if menu.is_a?(Hash) || menu.is_a?(Array)
             (menu = [menu].flatten).each do |item|
