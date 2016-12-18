@@ -79,7 +79,7 @@ module Jekyll
       out = {}
 
       @site.collections.each do |collection, pages|
-        pages.select { |p| p.data.keys.grep(/menus?/).size > 0 }.each_with_object({}) do |page|
+        pages.docs.select { |p| p.data.keys.grep(/menus?/).size > 0 }.each_with_object({}) do |page|
           [page.data["menus"], page.data["menu"]].flatten.compact.map do |menu|
             out = _front_matter_menu(menu, page, out)
           end
