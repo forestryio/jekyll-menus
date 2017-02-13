@@ -56,14 +56,11 @@ module Jekyll
 
         #
 
-        def method_missing(method, *args)
-          if args.size == 0 && @item.has_key?(method.to_s)
+        def before_method(method)
+          if @item.has_key?(method.to_s)
             return @item[
               method.to_s
             ]
-
-          else
-            super
           end
         end
       end
