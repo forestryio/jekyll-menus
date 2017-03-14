@@ -205,8 +205,8 @@ module Jekyll
     def slug(page)
       ext = page.data["ext"] || page.ext
       out = File.join(File.dirname(page.path), File.basename(page.path, ext))
-      out.tr("^a-z0-9-_\\/", "").gsub(
-        /\/|\-+/, "_"
+      out.tr("^a-z0-9-_\\/", "").gsub(/\/|\-+/, "_").gsub(
+        /^_+/, ""
       )
     end
 
