@@ -6,6 +6,21 @@ Complex, and infinite Hugo-like menus for Jekyll.
 
 In Jekyll Menus you can create `_data/menus.yml`, or add menu items via your front-matter in pages as well! Both are merged into the same menus if the identifiers match so you can even split off menus between the two, and so that you can have menus that have internal and external links.
 
+### Setup
+
+Add Jekyll Menus to your `Gemfile`:
+```yaml
+  gem "jekyll-menus"
+```
+Then add the following to your `_config.yml` file:
+
+```yaml
+gems:
+  - jekyll-menus
+```
+
+
+
 ### Front-Matter Examples
 #### Using a String key to add an item to the menu
 
