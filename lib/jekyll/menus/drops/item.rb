@@ -63,6 +63,8 @@ module Jekyll
             ]
           end
         end
+
+        alias_method :liquid_method_missing, :before_method
       end
     end
   end
