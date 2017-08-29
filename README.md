@@ -108,7 +108,7 @@ Which can then be used in your templates by looping over the menu item’s `chil
     <a href="{{ item.url }}" title="Go to {{ item.title }}">{{ item.title }}</a>
     {% if item.children %}
       <ul class="sub-menu">
-      {% for item in site.menus.header %}
+      {% for item in item.children %}
         <li class="menu-item-{{ loop.index }}">
           <a href="{{ item.url }}" title="Go to {{ item.title }}">{{ item.title }}</a>
         </li>
