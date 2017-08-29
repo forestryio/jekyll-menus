@@ -6,7 +6,7 @@ A robust, simple-to-use menu plugin for Jekyll that allows for infinitely nested
 
 ## Installation
 
-To install Jekyll Menus, you must first have Ruby and Rubygems installed.
+To install Jekyll Menus, you must first have Ruby and RubyGems installed.
 
 Once installed, add this line to your application's Gemfile:
 `gem 'jekyll-menus'`
@@ -69,7 +69,7 @@ menus:
 
 The other option for configuring menus is creating menus using `_data/menus.yml`. In this scenario, you can add custom menu items to external content, or site content that isn’t handled by Jekyll.
 
-In this file, you provide the menu key, and an array of custom menu items. Custom menu items in the data file must have `url`, `title`, and `identifier` variable:
+In this file, you provide the menu key and an array of custom menu items. Custom menu items in the data file must have `url`, `title`, and `identifier` variable:
 
 ```
 ---
@@ -82,7 +82,7 @@ header:
 
 ## Sub-menus
 
-Jekyll Menus supports infinitely nested menu items using the `identifier` variable. Any menu item can be used as a parent menu by using it’s identifier as the menu.
+Jekyll Menus supports infinitely nested menu items using the `identifier` variable. Any menu item can be used as a parent menu by using its identifier as the menu.
 
 For example, in `_data/menus.yml`:
 ```
@@ -100,7 +100,7 @@ menus: api
 ---
 ```
 
-Which can then be used in your templates by looping over the menu item’s `children` variable.
+Which can then be used in your templates by looping over the menu item’s `children` variable:
 ```
 <ul>
 {% for item in site.menus.header %}
@@ -139,7 +139,7 @@ Jekyll Menus has the following variables:
 | Variable | Description |
 |---|---|
 | item.title | The display title of the menu item. Automatically set as the post or page title if no value is provided in front matter. |
-| item.url | The URL the menu item links to. Automatically set as the post or page URL if no value is provided in front matter. |
+| item.url | The URL the menu item links to. Automatically set to the post or page URL if no value is provided in front matter. |
 | item.weight | Handles the order of menu items through a weighted system, starting with 1 being first. |
 | item.identifier |  The unique identifier for the current menu item. Allows for nested menu items. Automatically resolved to the page’s file path and filename if not provided in front matter. |
 | item.parent | The parent menu. |
@@ -161,7 +161,7 @@ menus:
 
 ## Recursive Menus
 
-If you’re looking to build an infinitely nested menu (or a menu that is nested more than once up to a limit) than you should set up a reusable menu include that will handle this for you.
+If you’re looking to build an infinitely nested menu (or a menu that is nested more than once up to a limit) then you should set up a reusable menu include that will handle this for you.
 
 In `_includes/menu.html` :
 ```
