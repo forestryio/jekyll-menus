@@ -1,28 +1,26 @@
-# Jekyll Menus Documentation
-
-## Jekyll Menus
+# Jekyll Menus
 
 A robust, simple-to-use menu plugin for Jekyll that allows for infinitely nested menus.
 
 ## Installation
 
-To install Jekyll Menus, you must first have Ruby and RubyGems installed.
+To install Jekyll Menus, you must first have [Ruby and RubyGems](https://jekyllrb.com/docs/installation/#install-with-rubygems) installed, and we also recommend installing [Bundler](https://bundler.io/#getting-started).
 
-Once installed, add this line to your application's Gemfile:
-`gem 'jekyll-menus'`
+You can install Jekyll Menus with Bundler easily by running:
 
-Then add this line to your Jekyll site’s `_config.yml`:
+`$ bundle add jekyll-menus`
+
+Or it can be installed manually:
+
+`$ gem install jekyll-menus`
+
+Once installed, add this line to your Jekyll site’s `_config.yml`:
+
 ```
 plugins:
 - jekyll-menus
 ```
 *Note in earlier versions of Jekyll, `plugins` should instead be `gems`*
-
-And then execute:
-`$ bundle install`
-
-Or install it manually:
-`$ gem install jekyll-menus`
 
 ## Usage
 
@@ -144,6 +142,8 @@ Jekyll Menus has the following variables:
 | item.identifier |  The unique identifier for the current menu item. Allows for nested menu items. Automatically resolved to the page’s file path and filename if not provided in front matter. |
 | item.parent | The parent menu. |
 | item.children | An array of any child menu items. Used to create sub-menus. |
+
+## Custom Variables
 
 Menu items also support custom variables, which you add to each menu item in the front matter or data file. 
 
