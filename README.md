@@ -4,11 +4,11 @@ A robust, simple-to-use menu plugin for Jekyll that allows for infinitely nested
 
 ## Installation
 
-To install Jekyll Menus, you should either have [Ruby, and RubyGems](https://jekyllrb.com/docs/installation/#install-with-rubygems) installed, or we recommend installing, and using [Bundler](https://bundler.io/#getting-started).  Bundler is also what Jekyll will prefer you to use by default, and it is a very common dependency manager for Ruby.
+To install and use Jekyll Menus, you should either have Ruby, and either [RubyGems](https://jekyllrb.com/docs/installation/#install-with-rubygems), or we recommend using [Bundler](https://bundler.io/#getting-started).  Bundler is what Jekyll will prefer you to use by default if you `jekyll new`.
 
 ### Using Bundler
 
-You can add Jekyll Menus gem to the `jekyll_plugins` group in your Gemfile:
+You can add our gem to the `jekyll_plugins` group in your `Gemfile`:
 
 ```ruby
 group :jekyll_plugins do
@@ -20,7 +20,7 @@ And then install from shell.
 
 ```sh
 bundle install
-bundle install --path vendor/bundle
+   # --path vendor/bundle
 ```
 
 ***If you are using Jekyll Docker, you do not need to perform this step, Jekyll Docker will perform it on your behalf when you launch the image, you only need to perform this step if you are working directly on your system.***
@@ -29,6 +29,7 @@ bundle install --path vendor/bundle
 
 ```sh
 sudo gem install jekyll-menus
+sudo gem update  jekyll-menus
 ```
 
 Once installed, add the Gem to your `_config.yml`:
