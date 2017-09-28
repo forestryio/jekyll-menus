@@ -4,7 +4,7 @@ A robust, simple-to-use menu plugin for Jekyll that allows for infinitely nested
 
 ## Installation
 
-To install and use Jekyll Menus, you should either have Ruby, and either [RubyGems](https://jekyllrb.com/docs/installation/#install-with-rubygems), or we recommend using [Bundler](https://bundler.io/#getting-started).  Bundler is what Jekyll will prefer you to use by default if you `jekyll new`.
+To install and use Jekyll Menus, you should have Ruby, and either [RubyGems](https://jekyllrb.com/docs/installation/#install-with-rubygems), or we recommend using [Bundler](https://bundler.io/#getting-started).  Bundler is what Jekyll will prefer you to use by default if you `jekyll new`.
 
 ### Using Bundler
 
