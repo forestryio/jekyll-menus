@@ -8,7 +8,7 @@ To install Jekyll Menus, you must first have [Ruby and RubyGems](https://jekyllr
 
 You can install Jekyll Menus by adding the plugin to the `jekyll-plugins` group in your Gemfile:
 
-```
+```ruby
 group :jekyll_plugins do
    gem "jekyll-menus"
 end
@@ -16,15 +16,19 @@ end
 
 And then install with Bundler:
 
-`$ bundle install`
+```sh
+bundle install
+```
 
 Or it can be installed manually:
 
-`$ gem install jekyll-menus`
+```sh
+gem install jekyll-menus
+```
 
 Once installed, add this line to your Jekyll site’s `_config.yml`:
 
-```
+```yaml
 plugins:
 - jekyll-menus
 ```
@@ -36,7 +40,7 @@ Jekyll Menus allows you to create menus by attaching posts and pages to menus th
 
 Jekyll Menus adds a new option to the site variable called `site.menus`, which can be looped over just like pages, posts, and other content:
 
-```
+```liquid
 <ul>
 {% for item in site.menus.header %}
   <li class="menu-item-{{ loop.index }}">
@@ -50,7 +54,7 @@ Jekyll Menus adds a new option to the site variable called `site.menus`, which c
 
 The easiest way to use Jekyll Menus is to start building menus using your existing posts and pages. This can be done by adding a `menus` variable to your front matter:
 
-```
+```markdown
 ---
 title: Homepage
 menus: header
@@ -61,7 +65,7 @@ This will create the `header` menu with a single item, the homepage. The `url`, 
 
 You can optionally set any of the available [menu item variables](#menu-items) yourself to customize the appearance and functionality of your menus. For example, to set a custom title and weight:
 
-```
+```markdown
 ---
 title: Homepage
 menus:
@@ -77,7 +81,7 @@ The other option for configuring menus is creating menus using `_data/menus.yml`
 
 In this file, you provide the menu key and an array of custom menu items. Custom menu items in the data file must have `url`, `title`, and `identifier` variable:
 
-```
+```markdown
 ---
 header:
   - url: /api
@@ -91,7 +95,8 @@ header:
 Jekyll Menus supports infinitely nested menu items using the `identifier` variable. Any menu item can be used as a parent menu by using its identifier as the menu.
 
 For example, in `_data/menus.yml`:
-```
+
+```yaml
 header:
   - url: /api
     title: API Documentation
@@ -99,7 +104,8 @@ header:
 ```
 
 In a content file called  `/api-support.html`:
-```
+
+```markdown
 ---
 title: Get API Support
 menus: api
@@ -107,7 +113,8 @@ menus: api
 ```
 
 Which can then be used in your templates by looping over the menu item’s `children` variable:
-```
+
+```liquid
 <ul>
 {% for item in site.menus.header %}
   <li class="menu-item-{{ loop.index }}">
@@ -157,7 +164,7 @@ Menu items also support custom variables, which you add to each menu item in the
 
 For example, adding a `pre` or `post` variable to add text or HTML to your menu items:
 
-```
+```markdown
 ---
 title: Homepage
 menus:
@@ -172,7 +179,8 @@ menus:
 If you’re looking to build an infinitely nested menu (or a menu that is nested more than once up to a limit) then you should set up a reusable menu include that will handle this for you.
 
 In `_includes/menu.html` :
-```
+
+```liquid
 {% if menu %}
 <ul>
 {% for item in menu %}
@@ -189,7 +197,8 @@ In `_includes/menu.html` :
 ```
 
 In `_layouts/default.html` (or any layout file):
-```
+
+```liquid
 <html>
   <body>
     <header>
