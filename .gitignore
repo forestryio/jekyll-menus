@@ -3,3 +3,4 @@
 /spec/fixture/_site
 /Gemfile.lock
 /*.gem
+/spec/examples.txt
