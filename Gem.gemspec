@@ -20,7 +20,6 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
 
   spec.add_runtime_dependency("jekyll", "~> 3.1")
-  spec.add_development_dependency(
-    "rspec", ">= 3", "< 4"
-  )
+  spec.add_development_dependency("rspec", ">= 3", "< 4")
+  spec.add_development_dependency("pry")
 end
