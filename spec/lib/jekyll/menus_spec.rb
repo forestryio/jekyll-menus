@@ -39,7 +39,6 @@ RSpec.describe Jekyll::Menus, 'basic functionality' do
     end
 
     describe 'frontmatter menus' do
-
         def page_with_menu_definition
             double(
                 :data => {
@@ -57,7 +56,7 @@ RSpec.describe Jekyll::Menus, 'basic functionality' do
 
         def page_with_menu_reference 
             double(
-                :data => {'menus' => ['header'], 'ext' => 'ext'}, 
+                :data => {'menus' => [ 'header' ], 'ext' => 'ext'}, 
                 :url => 'www.example.com', 
                 :path => 'path', 
                 :relative_path => 'relpath'
@@ -92,7 +91,6 @@ RSpec.describe Jekyll::Menus, 'basic functionality' do
             it 'should build a menu defined in the frontmatter' do
                 @site.pages << page_with_menu_definition
                 
-
                 menus = Jekyll::Menus.new(@site)
 
                 expect(menus.menus).to eq(expected_well_defined_menu_output)
