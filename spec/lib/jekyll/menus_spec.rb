@@ -1,5 +1,6 @@
 require 'jekyll'
 require 'jekyll/menus'
+require 'spec_helper'
 
 RSpec.describe Jekyll::Menus, 'basic functionality' do
     before(:each) do
