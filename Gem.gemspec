@@ -12,14 +12,14 @@ Gem::Specification.new do |spec|
   spec.description = "Menus (site navigation) for your Jekyll website"
   spec.summary = "Menus (navigation) for your very own Jekyll website."
   spec.files = %W(Gemfile) + Dir["lib/**/*"]
-  spec.required_ruby_version = ">= 2.1.0"
+  spec.required_ruby_version = ">= 2.4.0"
   spec.email = ["jordon@envygeeks.io"]
   spec.require_paths = ["lib"]
   spec.name = "jekyll-menus"
   spec.has_rdoc = false
   spec.license = "MIT"
 
-  spec.add_runtime_dependency("jekyll", "~> 3.1")
+  spec.add_runtime_dependency("jekyll", ">= 3.6", "< 5.0" )
   spec.add_development_dependency(
     "rspec", ">= 3", "< 4"
   )
