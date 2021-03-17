@@ -100,7 +100,7 @@ module Jekyll
       # --
 
       if menu.is_a?(Array) || menu.is_a?(String)
-        _simple_front_matter_menu(menu, {
+        _simple_front_matter_menu(menu, **{
           :mergeable => out, :page => page
         })
 
@@ -127,7 +127,7 @@ module Jekyll
           # --
 
           elsif item.is_a?(Hash)
-            out[key] << _fill_front_matter_menu(item, {
+            out[key] << _fill_front_matter_menu(item, **{
               :page => page
             })
 
@@ -178,7 +178,7 @@ module Jekyll
 
       else
         mergeable[menu] ||= []
-        mergeable[menu] << _fill_front_matter_menu(nil, {
+        mergeable[menu] << _fill_front_matter_menu(nil, **{
           :page => page
         })
       end
