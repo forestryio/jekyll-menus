@@ -116,7 +116,7 @@ module Jekyll
           # --
 
           if item.is_a?(String)
-            out[key] << _fill_front_matter_menu({ "identifier" => item }, {
+            out[key] << _fill_front_matter_menu({ "identifier" => item }, **{
               :page => page
             })
 
