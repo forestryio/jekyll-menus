@@ -16,7 +16,6 @@ Gem::Specification.new do |spec|
   spec.email = ["jordon@envygeeks.io"]
   spec.require_paths = ["lib"]
   spec.name = "jekyll-menus"
-  spec.has_rdoc = false
   spec.license = "MIT"
 
   spec.add_runtime_dependency("jekyll", ">= 3.6", "< 5.0" )
